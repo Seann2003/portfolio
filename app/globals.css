@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  --foreground: #1A1A1A;
+  --background: #FAFAF8;
+  --background-secondary: #F5F5F0;
+  --border: #E0E0D9;
+  --border-hover: #C9C9C0;
+  --text-muted: #6B6B6B;
+  --text-subtle: #8A8A85;
+  --coral: #E8765B;
+  --coral-light: #FFE8E0;
+  --coral-gradient: linear-gradient(135deg, #FFE8E0 0%, #FFD4C4 50%, #F9BCA8 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #E8765B 0%, #D45D42 50%, #B85A3D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, #FAFAF8 0%, #FFF8F5 100%);
+  }
+  
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #FFD4C4 0%, #F9BCA8 50%, #E8957A 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  .anthropic-border {
+    border-color: var(--border);
+    transition: border-color 0.2s ease;
+  }
+  
+  .anthropic-border:hover {
+    border-color: var(--border-hover);
+  }
+  
+  .anthropic-card {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
+  }
+  
+  .anthropic-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+  
+  .coral-glow {
+    box-shadow: 0 0 40px rgba(232, 118, 91, 0.15);
+  }
+  
+  .coral-glow-subtle {
+    box-shadow: 0 0 60px rgba(232, 118, 91, 0.08);
+  }
+}
