@@ -60,20 +60,20 @@ export function ProjectsSection() {
         </div>
 
         <div className="mb-10 space-y-4">
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="relative flex-1 max-w-md">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <SearchIcon className="w-4 h-4 text-ink-50" />
-              </div>
-              <input
-                type="text"
-                placeholder="Search projects..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-white border border-sand-300 text-ink-400 placeholder-ink-50 focus:outline-none focus:border-sand-400 focus:ring-1 focus:ring-sand-400 transition-all"
-              />
+          <div className="relative max-w-md">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <SearchIcon className="w-4 h-4 text-ink-50" />
             </div>
+            <input
+              type="text"
+              placeholder="Search projects..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-white border border-sand-300 text-ink-400 placeholder-ink-50 focus:outline-none focus:border-sand-400 focus:ring-1 focus:ring-sand-400 transition-all"
+            />
+          </div>
 
+          <div className="flex flex-wrap items-center gap-3">
             <div className="relative">
               <button
                 onClick={() => {
@@ -206,10 +206,10 @@ export function ProjectsSection() {
 
         <div className="border border-sand-300 rounded-xl overflow-hidden bg-white">
           <div className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-sand-300 text-xs font-medium text-ink-200 uppercase tracking-wider bg-sand-50">
-            <div className="col-span-4 sm:col-span-3">Project</div>
-            <div className="col-span-5 sm:col-span-5">Description</div>
-            <div className="col-span-2 sm:col-span-2">Tags</div>
-            <div className="col-span-1 sm:col-span-1 hidden sm:block">Types</div>
+            <div className="col-span-5 sm:col-span-3">Project</div>
+            <div className="col-span-6 sm:col-span-5">Description</div>
+            <div className="hidden sm:block col-span-2">Tags</div>
+            <div className="hidden sm:block col-span-1">Types</div>
             <div className="col-span-1 text-right"></div>
           </div>
 
@@ -224,36 +224,41 @@ export function ProjectsSection() {
                   className="grid grid-cols-12 gap-4 px-6 py-5 hover:bg-sand-50 transition-all duration-200 group cursor-pointer animate-fade-in"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <div className="col-span-4 sm:col-span-3">
+                  <div className="col-span-5 sm:col-span-3">
                     <div className="flex items-start gap-3">
                       {project.featured && (
                         <span className="w-1.5 h-1.5 rounded-full bg-coral-500 mt-2 flex-shrink-0" />
                       )}
-                      <div className={project.featured ? '' : 'pl-4'}>
+                      <div className={project.featured ? '' : 'pl-4 sm:pl-0'}>
                         <h3 className="font-semibold text-ink-400 group-hover:text-coral-600 transition-colors">
                           {project.name}
                         </h3>
-                        <div className="flex flex-wrap gap-1 mt-2 sm:hidden">
-                          {project.types.map((type) => (
-                            <span
-                              key={type}
-                              className="px-2 py-0.5 text-xs bg-sand-200 text-ink-300 rounded border border-sand-300"
-                            >
-                              {formatLabel(type)}
-                            </span>
-                          ))}
-                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="col-span-5 sm:col-span-5">
+                  <div className="col-span-6 sm:col-span-5">
                     <p className="text-sm text-ink-200 line-clamp-2 leading-relaxed">
                       {project.description}
                     </p>
+                    <div className="flex flex-wrap gap-1 mt-2 sm:hidden">
+                      {project.tags.slice(0, 2).map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 text-xs bg-sand-200 text-ink-300 rounded border border-sand-300"
+                        >
+                          {formatLabel(tag)}
+                        </span>
+                      ))}
+                      {project.tags.length > 2 && (
+                        <span className="px-2 py-0.5 text-xs text-ink-50">
+                          +{project.tags.length - 2}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
-                  <div className="col-span-2 sm:col-span-2">
+                  <div className="hidden sm:block col-span-2">
                     <div className="flex flex-wrap gap-1">
                       {project.tags.map((tag) => (
                         <span
@@ -266,7 +271,7 @@ export function ProjectsSection() {
                     </div>
                   </div>
 
-                  <div className="col-span-1 sm:col-span-1 hidden sm:block">
+                  <div className="hidden sm:block col-span-1">
                     <div className="flex flex-wrap gap-1">
                       {project.types.map((type) => (
                         <span
