@@ -1,10 +1,8 @@
 ---
 title: "Jupiter Global is Big, Here's Why"
 date: "2026-04-08"
-description: "The default read on Jupiter is \"DeFi superapp on Solana.\" That's the surface. Here's why APAC-first QR and stablecoin rails are a structural bet—not a feature launch."
+description: 'The default read on Jupiter is "DeFi superapp on Solana." That''s the surface. Here''s why APAC-first QR and stablecoin rails are a structural bet—not a feature launch.'
 kicker: "X Post"
-related:
-  - research-notes-template
 ---
 
 The default read on Jupiter is "DeFi superapp on Solana". That's the surface.
